@@ -1,0 +1,181 @@
+ident	KERNELX64
+machine	amd64
+cpu	HAMMER
+
+#makeoptions	WITH_CTF=1
+#makeoptions	DEBUG=-g
+#options	USB_DEBUG
+
+makeoptions NO_MODULES
+
+options	CONSPEED=115200
+options	SC_PIXEL_MODE
+options	SMP
+options	KDB_TRACE
+options	KDB
+options	DUMMYNET
+options	IPFIREWALL
+options IPFIREWALL_VERBOSE
+options IPFIREWALL_VERBOSE_LIMIT=5
+options IPFIREWALL_DEFAULT_TO_ACCEPT
+options IPDIVERT
+options	TMPFS
+options	UNIONFS
+options NULLFS
+options	INCLUDE_CONFIG_FILE
+options	DDB_CTF
+options	KDTRACE_HOOKS
+options	KDTRACE_FRAME
+options	MAC
+options	CAPABILITIES
+options	CAPABILITY_MODE
+options	AUDIT
+options	HWPMC_HOOKS
+options	KBD_INSTALL_CDEV
+options	PRINTF_BUFR_SIZE=128
+options	_KPOSIX_PRIORITY_SCHEDULING
+options	SYSVSEM
+options	SYSVMSG
+options	SYSVSHM
+options	STACK
+options	KTRACE
+options	SCSI_DELAY=15000
+options	GEOM_LABEL
+options	GEOM_RAID
+options	GEOM_PART_GPT
+	 #HAST
+options	GEOM_GATE
+options	PSEUDOFS
+options	PROCFS
+options	MSDOSFS
+options	NFS_ROOT
+options	NFSLOCKD
+options	NFSD
+options	NFSCL
+options	MD_ROOT
+options	QUOTA
+options	UFS_GJOURNAL
+options	UFS_DIRHASH
+options	UFS_ACL
+options	SOFTUPDATES
+options	FFS
+options	SCTP
+options	TCP_OFFLOAD
+options	ACCEPT_FILTER_DATA
+options	ACCEPT_FILTER_HTTP
+options	INET
+options	PREEMPTION
+options	SCHED_ULE
+options	NEW_PCIB
+options	GEOM_PART_MBR
+options	GEOM_PART_EBR_COMPAT
+options	GEOM_PART_EBR
+options	GEOM_PART_BSD
+device	isa
+device	mem
+device	io
+device	uart_ns8250
+device	cpufreq
+device	acpi
+device	pci
+device	iicbus
+device	iicbb
+device	gpio
+device  nctgpio
+device	gpioiic
+device	gpioled
+device	fdc
+device	ahci
+device	ata
+device	scbus
+device	ch
+device	da
+device	sa
+device	cd
+device	pass
+device	hptmv
+device	cbb
+device	pccard
+device	cardbus
+device	uart
+device	ppbus
+device	puc
+device	miibus
+
+device re		# Realtek Netzwerkkarte
+device em		# Intel Netzwerkkarten
+
+device	rl
+device	loop
+device	random
+device	ether
+#device	tun
+device	md
+device	firmware
+device	bpf
+device	uhci
+device	ohci
+device	ehci
+device	xhci
+device	usb
+device  ucom
+device  u3g
+device	umass
+device	speaker
+#device	snd_uaudio
+device	mmc
+device	mmcsd
+device	sdhci
+device	virtio
+device	virtio_pci
+device	virtio_blk
+device	virtio_scsi
+device	virtio_balloon
+device  carp
+device  pty
+device  vlan
+device  lagg
+
+######################################################################
+device crypto
+device aesni
+device cryptodev
+# Firewall PF #########################################################
+device pf
+device pflog
+device pfsync
+# QOS #################################################################
+options         ALTQ
+options         ALTQ_CBQ        # Class Bases Queuing (CBQ)
+options         ALTQ_RED        # Random Early Detection (RED)
+options         ALTQ_RIO        # RED In/Out
+options         ALTQ_HFSC       # Hierarchical Packet Scheduler (HFSC)
+options         ALTQ_PRIQ       # Priority Queuing (PRIQ)
+options         ALTQ_NOPCC      # Required for SMP build
+########################################################################
+# Core Temperatur
+device coretemp
+########################################################################
+# Virtual networking for jail
+options         VIMAGE
+device          epair
+device          if_bridge
+########################################################################
+
+# lpt <LCDD oder Meldefolgeanzeige>
+device ppc
+device ppbus
+device lpt
+
+options         SC_NORM_ATTR=(FG_GREEN|BG_BLACK)
+options         SC_NORM_REV_ATTR=(FG_YELLOW|BG_GREEN)
+options         SC_KERNEL_CONS_ATTR=(FG_RED|BG_BLACK)
+options         SC_KERNEL_CONS_REV_ATTR=(FG_BLACK|BG_RED
+
+options         RACCT
+options         RCTL
+
+device iflib
+
+# neu
+device superio
